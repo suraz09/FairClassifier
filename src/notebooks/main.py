@@ -1,18 +1,17 @@
-import sys
+import sys, os
 import pandas as pd
 from sklearn.metrics import accuracy_score, roc_auc_score
 
-sys.path.append('../preprocess/')
-sys.path.append('../model/')
-sys.path.append('../analysis/')
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]), 'preprocess'))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]), 'model'))
+sys.path.append(os.path.join(os.path.dirname(sys.path[0]), 'analysis'))
 
 from preprocess import DataProcessor
 from classifier import Classifier
 import visualize
 
-
 #Load the data from the source
-data = DataProcessor('../../data/raw/recidivism.csv')
+data = DataProcessor(os.path.join(os.path.dirname(os.path.dirname(sys.path[0])), 'data', 'raw', 'recidivism.csv'))
 
 #calls the function to process the data
 X,y,Z = data.loadProcessData()

@@ -1,14 +1,17 @@
-import numpy as np
-np.random.seed(7)
 import matplotlib.pyplot as plt
-
 import seaborn as sns
-sns.set(style="white", palette="muted", color_codes=True, context="talk")
 
+sns.set(style="white", palette="muted", color_codes=True, context="talk")
 create_gif = False
 
 """
-    Show the results in the grahph plot.
+    Show the results in the graph plot.
+    Plots the distribution of sensitive attribute's predicted values 
+    :param y, the predicted values by the model
+    :param Z, Identified sensitive attribute
+    :param iteration, current training iteration values to be displayed on the graph
+    :param val_metrics, Accuracy value to be displayed on the graph
+    :param p_rule, the value computed from P-rule metrics to be displayed on the graph
 """
 
 def plot_distributions(y, Z, iteration=None, val_metrics=None, p_rules=None, fname=None):
