@@ -33,7 +33,7 @@ try:
     #Result of unfair classifier
     print(f"Accuracy: {100*accuracy_score(y_test, (y_pred>0.5)):.1f}%")
 
-    # Display the result of fairness metric of unfair classifier
+    # Display the result of fairness metric of unfair classifier.
     metrics = FairMetrics()
     print("The classifier satisfies the following %p-rules:")
     print("P-rule {0:.0f}".format(metrics.p_rule(y_pred, Z_test[sensitive_attribute])))
