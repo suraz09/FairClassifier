@@ -20,6 +20,10 @@ class DataProcessor:
     def loadData(self, sensitive_attribute, attribute, predictionValue, prediction_column):
         input_data = pd.read_csv(self.path)
         df = pd.DataFrame(input_data)
+        """ 
+            Perform the same preprocessing as the original analysis by Pro-Publica
+            https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb
+        """
         df = df[(df.days_b_screening_arrest <= 30)
                 & (df.days_b_screening_arrest >= -30)
                 & (df.is_recid != -1)
