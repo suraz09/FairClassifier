@@ -6,7 +6,7 @@ create_gif = False
 
 """
     Show the results in the graph plot.
-    Plots the distribution of sensitive attribute's predicted values 
+    Plots the distribution of sensitive attribute's predicted values
     :param y, the predicted values by the model
     :param Z, Identified sensitive attribute
     :param iteration, current training iteration values to be displayed on the graph
@@ -46,3 +46,17 @@ def plot_distributions(y, Z, iteration=None, val_metrics=None, p_rules=None, fna
         plt.savefig(fname, bbox_inches='tight')
     #     st.pyplot()
     return fig
+
+
+"""
+    Plots the result of accuracy vs fairness tradeoff in a scatter plot
+    :param X, List of fairness satisfied using P% rule 
+    :param Y, List of accuracy
+    :param x_lab, x-label of the figure
+    :param y_lab, y-label of the figure
+"""
+def plotScatter(X,Y, x_lab, y_lab):
+    plt.scatter(X, Y)
+    plt.xlabel(x_lab)
+    plt.ylabel(y_lab)
+    plt.show()
