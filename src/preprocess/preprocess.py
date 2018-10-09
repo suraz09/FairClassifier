@@ -51,8 +51,7 @@ class DataProcessor:
     Split the data into train and test set.
     """
     def split_data(self, X, y, Z):
-        X_train, X_test, y_train, y_test, Z_train, Z_test = train_test_split(X, y, Z, test_size=0.3, stratify=y,
-                                                                             random_state=7)
+        X_train, X_test, y_train, y_test, Z_train, Z_test = train_test_split(X, y, Z, test_size=0.3, stratify=y)
         # standardize the data
         scaler = StandardScaler().fit(X_train)
         scale_df = lambda df, scaler: pd.DataFrame(scaler.transform(df), columns=df.columns, index=df.index)
