@@ -2,7 +2,7 @@
 
 **Machine Learning** models are extensively used for the purpose of determining access to services such as eligibility for loan, insurance etc. Despite gains in efficiency of these models, unintentional discrimination flaw of the model has not been fully addressed. 
 
-The Fair Classifier is an open source package that evaluates the fairness of a Neural Network based on the data it has been trained on.
+The Fair Classifier is an open source package that evaluate the fairness of a Neural Network. The goal is to build a command-line playground where user can check the fairness of the model by removing different sensitive attribute from the training data.
  
 This python package includes a set of metrics to test models for biasness and use adversarial network to help mitigate that biasness of the training data set.
 
