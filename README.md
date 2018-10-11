@@ -7,7 +7,7 @@ Unintentional discrimination made by Machine Learning results affects the lives 
 This flaw of unintentional discrimination caused by the source data has not been fully addressed though.
  
 
-The Fair Classifier is an open source package that evaluates the fairness of a Neural Network. 
+**Fair Classifier** is an open source package that evaluates the fairness of a Neural Network. 
 It is a command-line tool in which the user can check the fairness of the model against different sensitive attributes from the training dataset.
 
 ### Fairness metrics implemented
