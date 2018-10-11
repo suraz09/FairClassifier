@@ -56,9 +56,9 @@ Steps:
 
 `git clone git@github.com:suraz09/FairClassifier.git`
 
-`pip install -r requirements.txt`
-
 `cd FairClassifier`
+
+`pip install -r requirements.txt`
 
 `python src/notebooks/main.py race African-American`
 
