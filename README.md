@@ -1,19 +1,42 @@
 # FairClassifier
 
-**Machine Learning** models are extensively used for the purpose of determining access to services such as eligibility for loans, insurance etc. Despite gains in efficiency of these models, unintentional discrimination flaw of the model has not been fully addressed. 
+**Machine Learning** models are extensively used for the purpose of determining access to services such as eligibility for loans, insurance etc. 
 
-The Fair Classifier is an open source package that evaluate the fairness of a Neural Network. The goal is to build a command-line playground where user can check the fairness of the model by removing different sensitive attributes from the training data.
+With the growing impact and efficient results of Machine Learning and AI, transparency and fairness in the predictions of the models is of a major concern.
+Unintentional discrimination made by Machine Learning results affects the lives of people with certain sensitive characteristics. The sensitive characteristics might be sex, age or color.
+This flaw of unintentional discrimination caused by the source data has not been fully addressed though.
+ 
+
+The Fair Classifier is an open source package that evaluates the fairness of a Neural Network. 
+It is a command-line tool in which the user can check the fairness of the model against different sensitive attributes from the training dataset.
 
 ### Fairness metrics implemented
 > The fairness contraint P% rule is based on [this paper.](https://arxiv.org/pdf/1507.05259.pdf)
 
-### Biasness mitigation implemented
-> A neural network is attached with an adversarial network to help mitigate the bias. For further reading please follow this [Link.](https://blog.godatadriven.com/fairness-in-ml)
+### Mitigation approach
+It is common to think that simply removing sensitive attribute from the training data might be able to solve the problem of biasness.
+However, results obtained by training our Neural Network shows that this is not the case.
+
+> The basic idea is to attach a neural network  with an adversarial network to help mitigate the bias. For further reading please follow this [Link.](https://blog.godatadriven.com/fairness-in-ml)
+
+The detailed architecture is shown below.
 
 ## Architecture
 The overview of the architecture of the model is shown in this figure below:
 
 ![](images/architecture.png)
+
+The system of training two Neural Network might look similar to the one used for training [GANS.](https://arxiv.org/abs/1406.2661) 
+However, it is not the case. 
+
+First, the generative model used in GANs is replaced by a predictive model which 
+instead of generating synthetic data gives actual predictions from the input data.
+Second, adversarial network doesn't distinguish real data from generated synthetic data in this case. 
+However, it tries to predict the sensitive attribute values from the predicted labels from the earlier Neural Network.
+Both of these networks train simultaneously with an objective to optimize the prediction losses of prediction labels and sensitive attributes. 
+
+ 
+
 
 ## Setup
 Follow these steps for installation.
@@ -44,20 +67,29 @@ Steps:
 This project is inspired by this [Blog.](https://blog.godatadriven.com/fairness-in-ml) 
 
 
-## Requisites
+## Pre-Requisites
 `python`
 
-For faster results, we used cloud services i.e:
-`AWS`
+I have used `AWS` cloud services for faster training of the model.
+
 
 ### DataSet
-Compas Project [Dataset](https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv)
-This dataset is used to predict how likely a criminal defendant is to reoffend. 
+The [Dataset](https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years.csv) used in this project 
+was acquired, analyzed and released by [Propublica.](https://github.com/propublica/compas-analysis) It consists of ~12k records of criminals of Broward County. 
 
-THe detailed analysis of the dataset is shown in this [Notebook.](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb)
+Using this dataset, the model predicts how likely a criminal defendant is to reoffend.
+Recidivism is defined as a new arrest within two years in the analysis of data by [Propublica.](https://www.propublica.org/article/how-we-analyzed-the-compas-recidivism-algorithm)
+Each defendant received a score for 'Risk of recidivism' also called as COMPAS score. 
+The score for each defendant ranged from 1 to 10. 
+To start with a binary classification problem, Scores 1 to 5 were re-labeled as 'Low'
+and 6-10 were re-labeled as 'High'. 
  
+Some of the important attributes associated with each criminal defendants are:
 
-## Tradeoff
-As we move towards making the classifier more fair, we tend to lose the accuracy. There is a tradeoff between accuracy and fairness in this model. The graph below explains the tradeoff in one of the iteration.
+* Sex
+* Age 
+* Race 
+* Prior Arrest Count
+* Days arrested before assessment
+* Score Label
 
-![](images/trade-off.png)
